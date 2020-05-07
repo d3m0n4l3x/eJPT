@@ -1,0 +1,11 @@
+[eJPT]Directory Brute Force
+
+1) OWASP DirBuster
+In Kali, execute the following command:
+# dirbuster
+Enter the target's information and pick up Brute Force lists at /usr/share/dirbuster/wordlists before performing the scan.
+
+2) DirB
+In Kali, run the command below:
+# dirb https://www.google.com /usr/share/dirb/wordlists/vulns/apache.txt
+# dirb http://192.168.0.18:8080/ /usr/share/dirb/wordlists/common.txt
