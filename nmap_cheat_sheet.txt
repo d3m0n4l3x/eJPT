@@ -1,0 +1,46 @@
+[eJPT]Nmap Cheat Sheet
+
+
+1) Network / Host Scan (through ICMP)
+Scan a nework:
+#nmap -sn 192.168.1.0/24
+
+
+1.5) Network / Host Scan through ARP
+Scan a network through ARP by using the command, nping:
+#nping --arp-type ARP 192.168.0.0/24
+
+
+2) Port Scan (covering TCP & UDP)
+TCP Port Scan:
+#nmap -Pn -sT -p23,80 192.168.1.80
+UDP Port Scan:
+#nmap -Pn -sU -p1-10 192.168.1.80
+
+
+3) Service Scan
+Do OS/Service scan against a TCP port of an IP:
+#nmap -O -sV -sT -p 80 192.168.1.80
+Do OS/Service scan against an IP through UDP scan:
+#nmap -O -sV -sU 192.168.1.80
+
+
+4) Vulnerability Scan
+Upgrade scripts:
+#nmap --script-updatedb
+Vulnerability scan against an IP:
+#nmap -sC 192.168.1.80
+
+
+5) Combination Scan
+Scan all ports and corresponding vulnerabilities of multiple IP addresses:
+#nmap -sT -sV -O -p- -T4 -sC 192.168.1.100,101,102
+
+
+6) Sneaky Scan
+SYN Scan:
+#nmap -sS -sV 192.168.0.80
+Decoy Scan:
+#nmap -Pn -sT -D 192.168.0.88,172.16.0.13,10.0.0.13,ME 192.168.1.80
+IDLE Scan (The zombie, such as the TCP443 port of 192.168.0.251 in the following case, has to be existing):
+#nmap -p22 -sI 192.168.0.251:443 192.168.0.253
