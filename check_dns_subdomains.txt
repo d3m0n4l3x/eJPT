@@ -1,0 +1,11 @@
+[eJPT]Discovering a subdomain of a target
+
+Below shows three means easily helping pinpoint subdomains:
+
+1) Google Hacking
+site:company.com
+
+2) Use https://dnsdumpster.com/
+
+3) Utilize sublist3r
+sublist3r -d company.com
