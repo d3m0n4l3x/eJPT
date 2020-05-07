@@ -1,0 +1,3 @@
+[eJPT]Find files in Windows
+
+c:\>dir \*password*.txt /s /b /p
