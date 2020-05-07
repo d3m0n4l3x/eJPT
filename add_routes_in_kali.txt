@@ -1,0 +1,18 @@
+[eJPT]Add a route in Kali
+
+root@demonalex:~# ip route add 172.16.88.0/24 via 10.175.34.1
+
+root@demonalex:~# netstat -rn
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+...
+172.16.88.0     10.175.34.1     255.255.255.0   UG        0 0          0 tap0
+...
+
+root@demonalex:~# nmap -sn -n 172.16.88.0/24
+Starting Nmap 7.70 ( https://nmap.org ) at 2020-04-25 11:57 EDT
+Nmap scan report for 172.16.88.1
+Host is up (0.059s latency).
+Nmap scan report for 172.16.88.81
+Host is up (0.062s latency).
+Nmap done: 256 IP addresses (2 hosts up) scanned in 5.87 seconds
