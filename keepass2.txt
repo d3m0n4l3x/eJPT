@@ -1,0 +1,6 @@
+[eJPT]Keepass2 -- A secure password vault
+Reference: https://keepass.info/
+
+Install KeePass2 in Kali:
+#apt-get update
+#apt-get install keepass2
