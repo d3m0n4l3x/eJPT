@@ -1,0 +1,5 @@
+[eJPT][spider]A simple web crawler/spider
+
+#mkdir -p /tmp/test1
+#cd /tmp/test1
+#wget -r -l 5 http://www.xxx.com/index.html; grep -nR -i keyword www.xxx.com | tee ./report.txt
