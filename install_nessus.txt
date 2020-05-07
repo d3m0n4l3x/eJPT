@@ -1,0 +1,14 @@
+[eJPT][Nessus]Installing Nessus v8.10 on 20200421
+
+1) Download the deb file of Nessus from "https://www.tenable.com/downloads/nessus?loginAttempted=true", and store the deb file at /usr/local/sbin.
+
+2) Install it as below shows:
+#cd /usr/local/sbin
+#dpkg -i ./Nessus-8.10.0-debian6_i386.deb
+
+3) Start Nessus:
+#/etc/init.d/nessusd start
+
+4) Open a browser and access "https://127.0.0.1:8834".
+
+5) After the webportal shows up, select "Nessus Essentials" before filling out a form in order to get the Activation Code. You then fill up the Activation Code offered by an email sent by Tenable before creating an Admin account. The installation is done.
