@@ -1,0 +1,11 @@
+[eJPT]Connect SSL service with Raw Socket
+
+Normally, there would be two tools being utilized for connecting SSL service with Raw Socket, and they are OpenSSL and NCat.
+
+Examples are shown below:
+
+# openssl s_client -connect mail.google.com:443
+
+# ncat --ssl -vv mail.google.com 443
+
+The output coming from OpenSSL shows more details.
