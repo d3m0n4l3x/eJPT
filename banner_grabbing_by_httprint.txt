@@ -1,0 +1,8 @@
+[eJPT]Utilizing HTTPrint to perform Banner Grabbing
+
+HTTPrint is a tool helping carry out an automatic Banner Grabbing.
+
+Examples are shown below:
+
+# httprint -P0 -s /usr/share/httprint/signatures.txt -h 1.2.3.4
+# httprint -P0 -s /usr/share/httprint/signatures.txt -h https://1.2.3.4
