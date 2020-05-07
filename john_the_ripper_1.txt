@@ -1,0 +1,26 @@
+[eJPT]John the Ripper Cheat Sheet
+
+Combine passwd file with shadow file:
+# unshadow ./passwd ./shadow > ./crackme
+
+Brute force the combination file:
+# john -incremental --users=root ./crackme
+OR without specifying any user:
+# john -incremental ./crackme
+
+Dictionary Crack:
+# john --wordlist=/usr/share/wordlists/rockyou.txt ./crackme
+OR with applying mangling rules:
+# john --wordlist=/usr/share/wordlists/rockyou.txt  -rules ./crackme
+
+Read what have been cracked:
+# john --shown ./crackme
+
+Crack others with John
+1) Apply the following command to locate those commands being able to convert those encrypted into a hash:
+# locate *2john
+2) Export a hash from an encrypted file (e.g. RAR):
+# rar2john ./encrypted.rar > ./encrypted.rar.hash
+3) Crack it:
+# john --wordlist=/usr/share/wordlists/rockyou.txt ./encrypted.rar.hash
+
