@@ -1,0 +1,16 @@
+[eJPT]Hydra Basic Usage
+
+Crack Username and Password at the same time:
+#hydra -L USERNAME_LIST.txt -P PASSWORD_LIST.txt PROTOCOL://IP
+example:
+#hydra -L /usr/share/wordlists/accounts.txt -P /usr/share/wordlists/rockyou.txt ssh://192.168.0.1
+
+Only crack Password:
+#hydra -l USERNAME -P PASSWORD_LIST.txt PROTOCOL://IP
+example:
+#hydra -l root -P /usr/share/wordlists/rockyou.txt telnet://192.168.0.2
+
+Try a username-password pair:
+#hydra -l USERNAME -p PASSWORD PROTOCOL://IP
+example:
+#hydra -l administrator -p test123!@# rdp://192.168.0.3
