@@ -1,0 +1,24 @@
+[eJPT][nmap]Windows Share Enumeration
+
+
+Enumeration under Linux:
+#nmblookup -a IP_ADDRESS
+#smbclient -L //IP_ADDRESS -N
+
+Enumeration under Windows:
+>nbtstat -A IP_ADDRESS
+>net view IP_ADDRESS
+
+Enumeration with Nmap:
+#ll /usr/share/nmap/scripts/|grep smb-enum-
+-rw-r--r-- 1 root root  4846 Jan  9  2019 smb-enum-domains.nse
+-rw-r--r-- 1 root root  5931 Jan  9  2019 smb-enum-groups.nse
+-rw-r--r-- 1 root root  8045 Jan  9  2019 smb-enum-processes.nse
+-rw-r--r-- 1 root root 27262 Jan  9  2019 smb-enum-services.nse
+-rw-r--r-- 1 root root 12057 Jan  9  2019 smb-enum-sessions.nse
+-rw-r--r-- 1 root root  6923 Jan  9  2019 smb-enum-shares.nse
+-rw-r--r-- 1 root root 12531 Jan  9  2019 smb-enum-users.nse
+#nmap --script=smb-enum-users 192.168.1.10
+
+Enumeration with Enum4Linux:
+#enum4linux 192.168.1.10
