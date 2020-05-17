@@ -1,3 +1,7 @@
 [eJPT]Find files in Windows
 
-c:\>dir \*password*.txt /s /b /p
+Find files through their filename:
+c:\>dir *password*.txt /s /b /p
+
+Find files through their content:
+c:\>findstr /s /m /i administrator c:\users
